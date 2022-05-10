@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StrikeThat</title>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="public/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png">
+    <!--    <link rel="manifest" href="public/site.webmanifest">-->
+
+    <!-- Load Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,400italic,700' rel='stylesheet'
+          type='text/css'>
+
+    <!-- CSS libraries -->
+    <!--    <link rel="stylesheet" href="css/fontawesome.min.css">-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" \
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+
+    <!-- Custom CSS code -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<p class="h1">StrikeThat</p>
+<ul class="nav nav-tabs" id="navTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="highlights-tab" data-bs-toggle="tab" data-bs-target="#highlights" type="button" role="tab" aria-controls="highlights" aria-selected="false">Highlights</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="explore-tab" data-bs-toggle="tab" data-bs-target="#explore" type="button" role="tab" aria-controls="explore" aria-selected="false">Explore</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab" aria-controls="explore" aria-selected="false">About</button>
+    </li>
+</ul>
+<!--div for all the pages-->
+<div class="tab-content" id="navTabsContent">
+
+    <!--Home page-->
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="text-block">
+            <p>
+                Welcome to StrikeThat, a look at 2-strike hitting across MLB in the past few years (2018-2021). In order to get sufficiently large sample sizes, all batter-seasons included here are those with at least 150 plate appearances that ended with a 2 strike pitch. This has the unfortunate effect of eliminating all 2020 batter-seasons but 3 (shoutout to Max Muncy, Rafael Devers, and Keston Hiura for working deep counts in the 60-game season!)
+            </p>
+            <p>
+                On the Highlights page you will see visuals exploring some of the statistical highlights of this data set, and pointing out trends. On the Explore page, you can interact with an in-depth chart to look for your own correlations and engage with players' performances.
+            </p>
+            <p>
+                (Note that many of the visualizations here will be easiest to view on wider browser windows, and are not yet well optimized for mobile devices. Feel free swing at that 3-0 meatball of advice, or test your luck on a narrow screen down 0-2!)
+            </p>
+        </div>
+    </div>
+
+    <!--Highlight page-->
+    <div class="tab-pane fade" id="highlights" role="tabpanel" aria-labelledby="highlights-tab">
+        <div class="text-block">
+            <p>
+            On this page I'll take you through some observations of 2-strike hitting and its relation to other hitting stats. We will also look at some specific players who are interesting outliers, and I will try to give at least a brief sense of why they are so special.
+            </p>
+        </div>
+        <div class="row content-row">
+            <div class="col-md-4 text-block">
+                <p>
+                    Here we see an initial chart comparing 2-strike average to strikeout percentage. As one might guess, there is a fairly strong inverse correlation between the two, as all strikeouts count against two-strike average by definition.
+                </p>
+                <p>
+                    We've highlighted Michael Brantley, who is under-the-radar one of the best hitters in the league. We can see here that his top-notch 2-strike average is in large part due to his impeccably low strike out rate.
+                </p>
+            </div>
+            <div class="col-md-6 content-col justify-content-center">
+                <div id="hl1ScatterPlot" class="scatterParent align-self-center"></div>
+            </div>
+        </div>
+        <div class="row content-row">
+            <div class="col-md-6 content-col justify-content-center">
+                <div id="hl2ScatterPlot" class="scatterParent align-self-center"></div>
+            </div>
+            <div class="col-md-4 text-block">
+                <p>
+                    To the left, we see how overall average is positively correlated to two-strike hitting. This makes sense, and just shows that good hitters tend to also be relatively good with two strikes. Note that the scales of the axes are much lower for two-strike hitting, because those counts are advantageous to the pitcher.
+                </p>
+                <p>
+                    We've highlighted Alcides Escobar and David Fletcher, two contact hitters, as those who don't lose much ground when they're faced with two strikes. (Try to find them in the previous visualization, they both have very low strikeout rates!)
+                </p>
+                <p>
+                    J.D. Martinez on the other hand (highlighted on the right), is normally a top of the league slugger who struggles comparatively with two strikes. He has a middling strikeout rate.
+                </p>
+            </div>
+        </div>
+        <div class="row content-row">
+            <div class="col-md-4 text-block">
+                <p>
+                    In order to walk, you have to take at least 4 pitches in that plate appearance. This leads to the strong negative correlation between Swing Percentage and Walk Rate we see here.
+                </p>
+                <p>
+                    However, superstar Bryce Harper is a consistent outlier, with his walk rate being up near the top of the league while still swinging nearly 50% of the time. How can we explain this? Maybe he doesn't swing at a lot of pitches outside the zone, or maybe he fouls off a lot of pitches. The former can be investigated using the Chase Rate axis on the explore page!
+                </p>
+            </div>
+            <div class="col-md-6 content-col justify-content-center">
+                <div id="hl3ScatterPlot" class="scatterParent align-self-center"></div>
+            </div>
+        </div>
+        <div class="text-block">
+            <p>
+                How would you expect walk rate to influence two-strike hitting? Is there a correlation between chase rate (swinging outside the strikezone) and on base percentage? Do players who are better hitters get more at bats in general, or is it more of a bell curve? Head over to the explore tab and try changing the axes to find out!
+            </p>
+        </div>
+    </div>
+
+    <!--Explore page-->
+    <div class="tab-pane fade" id="explore" role="tabpanel" aria-labelledby="explore-tab">
+        <div class="text-block">
+            In this tab, you can use the axis dropdowns to explore the trends found in the 2-strike data. Click on a data point to keep that player's seasons highlighted.
+        </div>
+        <div class="container">
+            <div class="row content-row">
+                <div class="col-md-3" id="explorePlotControls">
+                    <label for="exploreXaxisSelect">X-Axis: </label>
+                    <select class="form-select axis-select x-axis-select" aria-label="X axis select" id="exploreXaxisSelect">
+                    </select>
+                    <label for="exploreYaxisSelect">Y-Axis: </label>
+                    <select class="form-select axis-select y-axis-select" aria-label="Y axis select" id="exploreYaxisSelect">
+                    </select>
+                </div>
+                <div class="col-md-9 content-col justify-content-center">
+                    <div id="exploreScatterPlot" class="scatterParent align-self-center"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--About page-->
+    <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
+        <div class="text-block">
+            <p>
+                StrikeThat was created by Noah Epstein as a Reading and Research project for CS91r at Harvard University in spring 2022. This process was advised by Prof. Steve Chong, and much of the work was inspired by Prof. Hanspeter Pfister and Dr. Johanna Beyer's class CS171.
+            </p>
+            <p>
+                More of Noah's work can be found at his <a href="https://github.com/nepstein10">GitHub</a>. Contact him at <a href="mailto:nepstein10@gmail.com">nepstein10@gmail.com</a>.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!--<div class="container">-->
+<!--    <div class="row justify-content-center">-->
+<!--        <div class="align-self-center" id="linechart"></div>-->
+<!--    </div>-->
+<!--</div>-->
+<!-- Load JS libraries -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" \
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<!-- d3 -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+<!--Visualization objects-->
+<script src="js/axis.js"></script>
+<script src="js/lineChart.js"></script>
+<script src="js/scatterplot.js"></script>
+
+<script src="js/main.js"></script>
+
+
+</body>

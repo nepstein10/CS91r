@@ -1,0 +1,25 @@
+.tooltip {
+    background-color: white;
+}
+
+.h1 {
+
+}
+
+.text-block {
+    margin-left: 5%; margin-right: 5%;
+    margin-top: 2%; margin-bottom: 2%;
+}
+
+/*.content-row {*/
+/*    height: 70vh;*/
+/*}*/
+
+.content-col {
+    height: 100%;
+}
+
+.scatterParent {
+    width: 100%;
+    height: 60vh;
+}
