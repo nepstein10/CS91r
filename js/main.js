@@ -89,7 +89,7 @@ function loadData() {
         hl2ScatterPlot.initVis()
 
         let hl3ScatterPlot = new ScatterPlot("hl3ScatterPlot", "none",data, "Swing and a... walk?",
-            [axes_dict["avg"], axes_dict["s2avg"]], {},
+            [axes_dict["swpct"], axes_dict["bbpct"]], {},
             function (d) {return d}, [players["Harper, Bryce"]],
             [350, 350]
         )
